@@ -15,7 +15,7 @@ int precedence(int c)
 	return 0;
 }
 
-void infix_to_postfix(char *infix, int *postfix)
+void infix_to_postfix(char *infix, int *postfix, int *rlen)
 {
 	
 }
