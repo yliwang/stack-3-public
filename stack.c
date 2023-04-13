@@ -7,9 +7,9 @@
 
 //typedef enum { false, true } bool;
 
-struct stack *init_stack(struct stack *t, int init_cap)
+struct stack *init_stack(struct stack *t)
 {
-	if (init_cap <= 0) init_cap = 10;
+	int init_cap = 10;
 
 	t->capacity = init_cap;
 
@@ -20,13 +20,13 @@ struct stack *init_stack(struct stack *t, int init_cap)
 	return t;
 }
 
-struct stack *create_stack(int init_cap)
+struct stack *create_stack()
 {
 	struct stack *t;
 
 	t = (struct stack *)malloc(sizeof(struct stack));
 
-	return init_stack(t, init_cap);
+	return init_stack(t);
 }
 
 
@@ -71,18 +71,18 @@ struct stack *push(struct stack *t, T e)
 
 T pop( struct stack *t )
 {
-T e;
-int loc;
+	T e;
+	int loc;
 
-assert(t->count > 0);
+	assert(t->count > 0);
 
-loc = t->count - 1;
+	loc = t->count - 1;
 
-e = t->store[loc];
+	e = t->store[loc];
 
-t->count--;
+	t->count--;
 
-return e;
+	return e;
 }
 
 bool is_empty(struct stack *t)
@@ -106,22 +106,4 @@ void uninit_stack(struct stack *t)
 	free(t->store);
 }
 
-#if 0
-void main()
-{
-	struct stack t;
 
-	init_stack(&t, 5);
-
-	int i;
-
-	for (i = 0; i < 20; i++) {
-		push(&t, i);
-	}
-
-	while (!is_empty(&t)) {
-		printf("%d, ", pop(&t));
-	}
-	
-}
-#endif
